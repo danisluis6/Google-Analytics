@@ -7,4 +7,5 @@
 >> - Open overview: https://console.firebase.google.com/project/ik0012dkkkd/overview <br>
 >> Overview in Firebase:
 ![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g1.png)
->>
+>> <br>Done get file and synchronize
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g2.png)
