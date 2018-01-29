@@ -14,3 +14,5 @@
 >>> - @link: https://www.androidhive.info/2015/08/android-integrating-google-analytics-v4/
 >>> - @link: https://developers.google.com/analytics/devguides/collection/android/v4/#set-up-your-project
 
+# Sign in to your Google Analytics account.
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g3.png)
