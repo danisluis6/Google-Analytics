@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
 
@@ -42,6 +43,27 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        /**
+         * Event tracking
+         * Event(Category, Action, Label)
+         */
+        btnSendEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Tracking Event
+                // MyApplication.getInstance().trackEvent("Book", "Download", "Track event example");
+
+                // Get tracker.
+                // Build and send an Event.
+                Application.tracker().send(new HitBuilders.EventBuilder()
+                        .setCategory("Book")
+                        .setAction("Download")
+                        .setLabel("Track event example")
+                        .build());
+                Toast.makeText(getApplicationContext(), "Event \'Book\' \'Download\' \'Event example\' is sent. Check it on Google Analytics Dashboard!", Toast.LENGTH_LONG).show();
             }
         });
     }

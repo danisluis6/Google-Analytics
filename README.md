@@ -1,35 +1,10 @@
-# Tracking Fragment
-⇒ Automatic Screen Tracking
+# Tracking Event
+⇒ Take notes:
 
-Another ways to approach GA. Follow code below:
-![alt text](https://github.com/danisluis6/Google-Analytics/blob/explore_modules_fragment/g1.png)
+Event tracking allows us to record any kind of user interaction within the app. The interaction can be anything like button press,
+selecting a spinner, swiping gestures, completing game level etc.,
 
-=> Configure in Application without file app_tracker.xml
+Event tracking accepts four parameters. Category, Action, Label and Value. Below is a simple event example when user presses
+the book download button.
 
-        tracker = analytics.newTracker("UA-113169160-1");
-
-=> Follow code below to tracker ScreenView(Typically HomeActivity in onResume())
-
-    @Override
-        public void onCreate() {
-            super.onCreate();
-            analytics = GoogleAnalytics.getInstance(this);
-
-            // TODO: Replace the tracker-id with your app one from https://www.google.com/analytics/web/
-            tracker = analytics.newTracker("UA-113169160-1");
-
-            // Provide unhandled exceptions reports. Do that first after creating the tracker
-            tracker.enableExceptionReporting(true);
-
-            // Enable Remarketing, Demographics & Interests reports
-            // https://developers.google.com/analytics/devguides/collection/android/display-features
-            tracker.enableAdvertisingIdCollection(true);
-        }
-
-=> Custom in HomeActivity.java:
-
-        Application.tracker().setScreenName("Home Screen");
-        Application.tracker().send(new HitBuilders.ScreenViewBuilder().build());
-![alt text](https://github.com/danisluis6/Google-Analytics/blob/explore_modules_fragment/g2.png)
-
-=> Here is link: https://developers.google.com/analytics/devguides/collection/android/v4/sessions
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/explore_modules_event/g1.png)
