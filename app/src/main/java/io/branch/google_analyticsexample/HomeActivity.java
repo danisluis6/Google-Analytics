@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.analytics.HitBuilders;
+
 import io.branch.google_analyticsexample.app.Application;
 
 public class HomeActivity extends AppCompatActivity {
@@ -47,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Application.getInstance().trackScreenView("Home Screen");
+        Application.tracker().setScreenName("Home Screen");
+        Application.tracker().send(new HitBuilders.ScreenViewBuilder().build());
     }
 }
