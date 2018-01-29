@@ -16,3 +16,17 @@
 
 # Sign in to your Google Analytics account.
 ![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g3.png)
+=> Link: https://analytics.google.com/analytics/web/provision/?authuser=0#provision/SignUp/
+
+# Configure app
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g4.png)
+
+# Overview Dashboard
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g5.png)
+
+# Creating Android Project
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g6.png)
+
+# Adding Google Analytics
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g7.png)
+=> compile 'com.google.android.gms:play-services-analytics:10.0.1'
