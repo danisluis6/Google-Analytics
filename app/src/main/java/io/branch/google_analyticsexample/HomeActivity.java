@@ -7,9 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import io.branch.google_analyticsexample.app.Application;
 
-    private static String TAG = MainActivity.class.getSimpleName();
+public class HomeActivity extends AppCompatActivity {
+
+    private static String TAG = HomeActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
 
@@ -36,9 +38,15 @@ public class MainActivity extends AppCompatActivity {
         btnSecondScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Application.getInstance().trackScreenView("Home Screen");
     }
 }
