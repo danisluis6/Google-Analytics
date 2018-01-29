@@ -1,6 +1,6 @@
 # Tracking Fragment
-
 ⇒ Automatic Screen Tracking
+
 Another ways to approach GA. Follow code below:
 ![alt text](https://github.com/danisluis6/Google-Analytics/blob/explore_modules_fragment/g1.png)
 
@@ -31,4 +31,5 @@ Another ways to approach GA. Follow code below:
         Application.tracker().setScreenName("Home Screen");
         Application.tracker().send(new HitBuilders.ScreenViewBuilder().build());
 ![alt text](https://github.com/danisluis6/Google-Analytics/blob/explore_modules_fragment/g2.png)
-=>
+
+=> Here is link: https://developers.google.com/analytics/devguides/collection/android/v4/sessions
