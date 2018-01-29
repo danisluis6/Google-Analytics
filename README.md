@@ -61,9 +61,15 @@ Make sure that you replaced the ga_trackingId with your tracking ID which we ret
 
 # Create MyApplication.java
 
-
-
 This call contains below important methods.
 trackScreenView() – Function to track screen view (Activity or Fragment).
 trackException() – Function to track exceptions using try & catch.
 trackEvent() – Function to track event.
+
+@Run:
+    CODE:
+
+        AnalyticsTrackers.initialize(this);
+        AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
+
+![alt text](https://github.com/danisluis6/Google-Analytics/blob/master/g8.png)
