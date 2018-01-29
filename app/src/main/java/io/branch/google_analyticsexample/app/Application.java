@@ -6,82 +6,61 @@ import com.google.android.gms.analytics.StandardExceptionParser;
 import com.google.android.gms.analytics.Tracker;
 
 /**
+ *
  * Created by lorence on 29/01/2018.
  *
+ * Custom implementation of android.app.Application.&nbsp;The android:name attribute in the
+ * AndroidManifest.xml application element should be the name of your class (".MyApp"). Android will
+ * always create an instance of the application class and call onCreate before creating any other
+ * Activity, Service or BroadcastReceiver.
  */
 
 public class Application extends android.app.Application {
 
-    public static final String TAG = Application.class
-            .getSimpleName();
+    /**
+     * The Analytics singleton. The field is set in onCreate method override when the application
+     * class is initially created.
+     */
+    private static GoogleAnalytics analytics;
 
-    private static Application mInstance;
+    /**
+     * The default app tracker. The field is from onCreate callback when the application is
+     * initially created.
+     */
+    private static Tracker tracker;
+
+    /**
+     * Access to the global Analytics singleton. If this method returns null you forgot to either
+     * set android:name="&lt;this.class.name&gt;" attribute on your application element in
+     * AndroidManifest.xml or you are not setting this.analytics field in onCreate method override.
+     */
+    @SuppressWarnings("unused") // Method is unused in codebase; kept here for reference.
+    public static GoogleAnalytics analytics() {
+        return analytics;
+    }
+
+    /**
+     * The default app tracker. If this method returns null you forgot to either set
+     * android:name="&lt;this.class.name&gt;" attribute on your application element in
+     * AndroidManifest.xml or you are not setting this.tracker field in onCreate method override.
+     */
+    public static Tracker tracker() {
+        return tracker;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mInstance = this;
+        analytics = GoogleAnalytics.getInstance(this);
 
-        AnalyticsTrackers.initialize(this);
-        AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
-    }
+        // TODO: Replace the tracker-id with your app one from https://www.google.com/analytics/web/
+        tracker = analytics.newTracker("UA-113169160-1");
 
-    public static synchronized Application getInstance() {
-        return mInstance;
-    }
+        // Provide unhandled exceptions reports. Do that first after creating the tracker
+        tracker.enableExceptionReporting(true);
 
-    public synchronized Tracker getGoogleAnalyticsTracker() {
-        AnalyticsTrackers analyticsTrackers = AnalyticsTrackers.getInstance();
-        return analyticsTrackers.get(AnalyticsTrackers.Target.APP);
-    }
-
-    /***
-     * Tracking screen view
-     *
-     * @param screenName screen name to be displayed on GA dashboard
-     */
-    public void trackScreenView(String screenName) {
-        Tracker t = getGoogleAnalyticsTracker();
-
-        // Set screen name.
-        t.setScreenName(screenName);
-
-        // Send a screen view.
-        t.send(new HitBuilders.ScreenViewBuilder().build());
-
-        GoogleAnalytics.getInstance(this).dispatchLocalHits();
-    }
-
-    /***
-     * Tracking exception
-     *
-     * @param e exception to be tracked
-     */
-    public void trackException(Exception e) {
-        if (e != null) {
-            Tracker t = getGoogleAnalyticsTracker();
-
-            t.send(new HitBuilders.ExceptionBuilder()
-                    .setDescription(
-                            new StandardExceptionParser(this, null)
-                                    .getDescription(Thread.currentThread().getName(), e))
-                    .setFatal(false)
-                    .build()
-            );
-        }
-    }
-
-    /***
-     * Tracking event
-     *
-     * @param category event category
-     * @param action   action of the event
-     * @param label    label
-     */
-    public void trackEvent(String category, String action, String label) {
-        Tracker t = getGoogleAnalyticsTracker();
-
-        // Build and send an Event.
-        t.send(new HitBuilders.EventBuilder().setCategory(category).setAction(action).setLabel(label).build());
+        // Enable Remarketing, Demographics & Interests reports
+        // https://developers.google.com/analytics/devguides/collection/android/display-features
+        tracker.enableAdvertisingIdCollection(true);
     }
 }
