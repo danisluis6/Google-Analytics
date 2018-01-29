@@ -58,11 +58,16 @@ public class HomeActivity extends AppCompatActivity {
 
                 // Get tracker.
                 // Build and send an Event.
-                Application.tracker().send(new HitBuilders.EventBuilder()
-                        .setCategory("Book")
-                        .setAction("Download")
-                        .setLabel("Track event example")
-                        .build());
+//                Application.tracker().send(new HitBuilders.EventBuilder()
+//                        .setCategory("Book")
+//                        .setAction("Download")
+//                        .setLabel("Track event example")
+//                        .build());
+
+                HitBuilders.EventBuilder eventBuilder = new HitBuilders.EventBuilder();
+                eventBuilder.setAction("Download").setCategory("Book").setValue(1L).setLabel("Track event example");
+                Application.tracker().send(eventBuilder.build());
+
                 Toast.makeText(getApplicationContext(), "Event \'Book\' \'Download\' \'Event example\' is sent. Check it on Google Analytics Dashboard!", Toast.LENGTH_LONG).show();
             }
         });
