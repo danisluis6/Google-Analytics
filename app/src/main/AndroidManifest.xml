@@ -3,7 +3,7 @@
     package="io.branch.google_analyticsexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".app.Application"
@@ -49,6 +49,8 @@
         </receiver>
 
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+
+        <activity android:name=".SecondActivity"></activity>
     </application>
 
 </manifest>
