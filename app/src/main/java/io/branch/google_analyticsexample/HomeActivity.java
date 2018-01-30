@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.StandardExceptionParser;
 
 import io.branch.google_analyticsexample.app.Application;
 
@@ -91,9 +92,13 @@ public class HomeActivity extends AppCompatActivity {
                     // Tracking exception
                     // Application.getInstance().trackException(e);
                     Application.tracker().send(new HitBuilders.ExceptionBuilder()
-                            .setDescription(e.toString())
-                            .setFatal(true)
-                            .build());
+                            .setDescription(
+                                    new StandardExceptionParser(HomeActivity.this, null)
+                                            .getDescription(Thread.currentThread().getName(), e))
+                            .setFatal(false)
+                            .build()
+                    );
+
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_track_exception), Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Exception: " + e.getMessage());
                 }
